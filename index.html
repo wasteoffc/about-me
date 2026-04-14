@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scroll Presentation</title>
+  <title>Pastel Scroll Presentation</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, #f7f4fb, #efe9ff);
       overflow-x: hidden;
     }
 
@@ -17,24 +18,167 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      position: relative;
+      padding: 20px;
     }
 
-    .section1 { background: #111; color: white; }
-    .section2 { background: #f5f5f5; }
-    .section3 { background: #222; color: white; }
+    .card {
+      background: white;
+      border-radius: 25px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 350px;
+      position: relative;
+    }
 
+    .title {
+      font-size: 28px;
+      color: #b8a6d9;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #777;
+    }
+
+    .image {
+      width: 100%;
+      border-radius: 15px;
+      margin-top: 15px;
+      transition: transform 1s ease;
+    }
+
+    .image:hover {
+      transform: scale(1.05);
+    }
+
+    /* animations */
     .hidden {
       opacity: 0;
-      transform: translateY(50px);
       transition: all 0.8s ease;
+    }
+
+    .from-left {
+      transform: translateX(-80px);
+    }
+
+    .from-right {
+      transform: translateX(80px);
+    }
+
+    .from-bottom {
+      transform: translateY(40px);
     }
 
     .show {
       opacity: 1;
-      transform: translateY(0);
+      transform: translate(0,0);
     }
 
-    img {
+    .delay1 { transition-delay: 0.2s; }
+    .delay2 { transition-delay: 0.5s; }
+    .delay3 { transition-delay: 0.8s; }
+
+    .decor {
+      font-size: 20px;
+      color: #cbb7ff;
+      margin: 10px 0;
+    }
+
+    .big {
+      font-size: 48px;
+      color: #cbb7ff;
+      letter-spacing: 5px;
+    }
+
+    /* floating stars */
+    .star {
+      position: absolute;
+      font-size: 20px;
+      color: #d6c8ff;
+      animation: float 6s infinite ease-in-out;
+    }
+
+    .star:nth-child(1) { top: 20%; left: 10%; }
+    .star:nth-child(2) { top: 70%; left: 80%; }
+    .star:nth-child(3) { top: 40%; left: 75%; }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* decorative PNG */
+    .png {
+      position: absolute;
+      width: 80px;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .png.left { left: -20px; top: 20px; }
+    .png.right { right: -20px; bottom: 20px; }
+
+  </style>
+</head>
+<body>
+
+  <section>
+    <div class="star">✧</div>
+    <div class="star">✦</div>
+    <div class="star">✧</div>
+
+    <div class="card">
+      <img class="png left" src="https://i.imgur.com/8Km9tLL.png">
+      <img class="png right" src="https://i.imgur.com/8Km9tLL.png">
+
+      <div class="title hidden from-left delay1">welcome</div>
+      <div class="decor hidden from-bottom delay2">✧ ✧ ✧</div>
+      <div class="subtitle hidden from-right delay3">scroll down</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <img class="png left" src="https://i.imgur.com/8Km9tLL.png">
+
+      <div class="title hidden from-right delay1">about me</div>
+      <img class="image hidden from-left delay2" src="https://picsum.photos/300/200">
+      <div class="subtitle hidden from-bottom delay3">your info here</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="card">
+      <img class="png right" src="https://i.imgur.com/8Km9tLL.png">
+
+      <div class="title hidden from-left delay1">links</div>
+      <div class="decor hidden from-right delay2">♡ ♡ ♡</div>
+      <div class="subtitle hidden from-bottom delay3">inst / tg / etc</div>
+    </div>
+  </section>
+
+  <section>
+    <div class="hidden from-bottom delay1 big">RENTRY</div>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    });
+
+    document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>    img {
       width: 300px;
       margin-top: 20px;
       border-radius: 10px;
