@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Presentation</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    section {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .section1 { background: #111; color: white; }
+    .section2 { background: #f5f5f5; }
+    .section3 { background: #222; color: white; }
+
+    .hidden {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+
+    .show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    img {
+      width: 300px;
+      margin-top: 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="section1">
+    <h1 class="hidden">Добро пожаловать</h1>
+    <p class="hidden">Скролль вниз 👇</p>
+  </section>
+
+  <section class="section2">
+    <h2 class="hidden">Картинка появляется</h2>
+    <img class="hidden" src="https://picsum.photos/400/300" alt="image">
+  </section>
+
+  <section class="section3">
+    <h2 class="hidden">Как в презентации</h2>
+    <p class="hidden">Каждый блок — как слайд</p>
+  </section>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    });
+
+    document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
