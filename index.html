@@ -1,194 +1,194 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pastel Scroll Presentation</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dark Aesthetic Scroll</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(180deg, #f7f4fb, #efe9ff);
-      overflow-x: hidden;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: white;
+  overflow-x: hidden;
+}
 
-    section {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      position: relative;
-      padding: 20px;
-    }
+section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  padding: 20px;
+}
 
-    .card {
-      background: white;
-      border-radius: 25px;
-      padding: 25px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      text-align: center;
-      max-width: 350px;
-      position: relative;
-    }
+/* FULLSCREEN IMAGE */
+.model-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
 
-    .title {
-      font-size: 28px;
-      color: #b8a6d9;
-      margin-bottom: 10px;
-    }
+/* overlay */
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
 
-    .subtitle {
-      font-size: 16px;
-      color: #777;
-    }
+/* cards */
+.card {
+  background: rgba(20,20,20,0.7);
+  backdrop-filter: blur(10px);
+  border-radius: 25px;
+  padding: 25px;
+  text-align: center;
+  max-width: 350px;
+  position: relative;
+  z-index: 2;
+}
 
-    .image {
-      width: 100%;
-      border-radius: 15px;
-      margin-top: 15px;
-      transition: transform 1s ease;
-    }
+.title {
+  font-size: 28px;
+  color: #cbb7ff;
+}
 
-    .image:hover {
-      transform: scale(1.05);
-    }
+.subtitle {
+  font-size: 16px;
+  color: #aaa;
+}
 
-    .hidden {
-      opacity: 0;
-      transition: all 0.8s ease;
-    }
+.image {
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 15px;
+  transition: transform 0.8s;
+}
 
-    .from-left { transform: translateX(-80px); }
-    .from-right { transform: translateX(80px); }
-    .from-bottom { transform: translateY(40px); }
+.image:hover {
+  transform: scale(1.05);
+}
 
-    .show {
-      opacity: 1;
-      transform: translate(0,0);
-    }
+/* animations */
+.hidden {
+  opacity: 0;
+  transition: all 0.8s ease;
+}
 
-    .delay1 { transition-delay: 0.2s; }
-    .delay2 { transition-delay: 0.5s; }
-    .delay3 { transition-delay: 0.8s; }
+.from-left { transform: translateX(-80px); }
+.from-right { transform: translateX(80px); }
+.from-bottom { transform: translateY(40px); }
 
-    .decor {
-      font-size: 20px;
-      color: #cbb7ff;
-      margin: 10px 0;
-    }
+.show {
+  opacity: 1;
+  transform: translate(0,0);
+}
 
-    .big {
-      font-size: 48px;
-      color: #cbb7ff;
-      letter-spacing: 5px;
-    }
+.delay1 { transition-delay: 0.2s; }
+.delay2 { transition-delay: 0.5s; }
+.delay3 { transition-delay: 0.8s; }
 
-    .star {
-      position: absolute;
-      font-size: 20px;
-      color: #d6c8ff;
-      animation: float 6s infinite ease-in-out;
-    }
+/* floating stars */
+.star {
+  position: absolute;
+  font-size: 18px;
+  color: #888;
+  animation: float 6s infinite ease-in-out;
+}
 
-    .star:nth-child(1) { top: 20%; left: 10%; }
-    .star:nth-child(2) { top: 70%; left: 80%; }
-    .star:nth-child(3) { top: 40%; left: 75%; }
+.star:nth-child(1) { top: 20%; left: 10%; }
+.star:nth-child(2) { top: 70%; left: 80%; }
+.star:nth-child(3) { top: 40%; left: 75%; }
 
-    @keyframes float {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0); }
-    }
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
 
-    .png {
-      position: absolute;
-      width: 80px;
-      opacity: 0.9;
-      pointer-events: none;
-    }
+/* bottom model */
+.model-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 180px;
+}
 
-    .png.left { left: -20px; top: 20px; }
-    .png.right { right: -20px; bottom: 20px; }
+.big {
+  font-size: 48px;
+  color: #cbb7ff;
+}
 
-    .model-top {
-      position: absolute;
-      top: 10px;
-      width: 140px;
-    }
-
-    .model-bottom {
-      position: absolute;
-      bottom: 10px;
-      width: 160px;
-    }
-
-  </style>
+</style>
 </head>
 
 <body>
 
-  <!-- FIRST -->
-  <section>
-    <div class="star">✧</div>
-    <div class="star">✦</div>
-    <div class="star">✧</div>
+<!-- FIRST -->
+<section>
 
-    <!-- ЗАМЕНИ НА СВОЙ PNG -->
-    <img class="model-top hidden from-bottom delay1" src="start.jpg">
+  <!-- ФОН -->
+  <img class="model-top" src="start.jpg">
+  <div class="overlay"></div>
 
-    <div class="card">
-      <img class="png left" src="https://i.imgur.com/8Km9tLL.png">
-      <img class="png right" src="https://i.imgur.com/8Km9tLL.png">
+  <div class="star">✧</div>
+  <div class="star">✦</div>
+  <div class="star">✧</div>
 
-      <div class="title hidden from-left delay1">welcome</div>
-      <div class="decor hidden from-bottom delay2">✧ ✧ ✧</div>
-      <div class="subtitle hidden from-right delay3">scroll down</div>
-    </div>
-  </section>
+  <div class="card">
+    <div class="title hidden from-left delay1">welcome</div>
+    <div class="subtitle hidden from-right delay2">scroll down</div>
+  </div>
 
-  <!-- SECOND -->
-  <section>
-    <div class="card">
-      <img class="png left" src="https://i.imgur.com/8Km9tLL.png">
+</section>
 
-      <div class="title hidden from-right delay1">about me</div>
-      <img class="image hidden from-left delay2" src="bigvox.gif">
-      <div class="subtitle hidden from-bottom delay3">your info here</div>
-    </div>
-  </section>
+<!-- SECOND -->
+<section>
+  <div class="card">
+    <div class="title hidden from-right delay1">about me</div>
 
-  <!-- THIRD -->
-  <section>
-    <div class="card">
-      <img class="png right" src="https://i.imgur.com/8Km9tLL.png">
+    <!-- GIF (будет норм на чёрном фоне) -->
+    <img class="image hidden from-left delay2" src="bigvox.gif">
 
-      <div class="title hidden from-left delay1">links</div>
-      <div class="decor hidden from-right delay2">♡ ♡ ♡</div>
-      <div class="subtitle hidden from-bottom delay3">inst / tg / etc</div>
-    </div>
-  </section>
+    <div class="subtitle hidden from-bottom delay3">your info here</div>
+  </div>
+</section>
 
-  <!-- LAST -->
-  <section>
-    <div class="hidden from-bottom delay1 big">RENTRY</div>
+<!-- THIRD -->
+<section>
+  <div class="card">
+    <div class="title hidden from-left delay1">links</div>
+    <div class="subtitle hidden from-right delay2">inst / tg / etc</div>
+  </div>
+</section>
 
-    <!-- ЗАМЕНИ НА СВОЙ PNG -->
-    <img class="model-bottom hidden from-bottom delay2" src="https://i.imgur.com/8Km9tLL.png">
-  </section>
+<!-- LAST -->
+<section>
+  <div class="big hidden from-bottom delay1">RENTRY</div>
 
-  <script>
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-        }
-      });
-    });
+  <img class="model-bottom hidden from-bottom delay2" src="finish.jpg">
+</section>
 
-    document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
-  </script>
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+});
+
+document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
