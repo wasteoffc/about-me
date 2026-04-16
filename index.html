@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dark Aesthetic Scroll</title>
+<title>Dark Aesthetic</title>
 
 <style>
 body {
@@ -14,39 +14,39 @@ body {
   overflow-x: hidden;
 }
 
+/* секции */
 section {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   position: relative;
-  padding: 20px;
+  padding: 220px 20px 60px; /* место под баннер */
 }
 
-/* FULLSCREEN IMAGE */
+/* БАННЕР */
 .model-top {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 200px;
   object-fit: cover;
-  z-index: -2;
+  z-index: 1;
 }
 
-/* overlay */
-.overlay {
+/* затемнение баннера */
+.banner-fade {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
   top: 0;
-  left: 0;
-  z-index: -1;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent, black);
+  z-index: 2;
 }
 
-/* cards */
+/* карточки */
 .card {
   background: rgba(20,20,20,0.7);
   backdrop-filter: blur(10px);
@@ -54,8 +54,7 @@ section {
   padding: 25px;
   text-align: center;
   max-width: 350px;
-  position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 
 .title {
@@ -72,14 +71,16 @@ section {
   width: 100%;
   border-radius: 15px;
   margin-top: 15px;
-  transition: transform 0.8s;
 }
 
-.image:hover {
-  transform: scale(1.05);
+/* гиф снизу */
+.gif-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 180px;
 }
 
-/* animations */
+/* анимации */
 .hidden {
   opacity: 0;
   transition: all 0.8s ease;
@@ -98,36 +99,6 @@ section {
 .delay2 { transition-delay: 0.5s; }
 .delay3 { transition-delay: 0.8s; }
 
-/* floating stars */
-.star {
-  position: absolute;
-  font-size: 18px;
-  color: #888;
-  animation: float 6s infinite ease-in-out;
-}
-
-.star:nth-child(1) { top: 20%; left: 10%; }
-.star:nth-child(2) { top: 70%; left: 80%; }
-.star:nth-child(3) { top: 40%; left: 75%; }
-
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0); }
-}
-
-/* bottom model */
-.model-bottom {
-  position: absolute;
-  bottom: 0;
-  width: 180px;
-}
-
-.big {
-  font-size: 48px;
-  color: #cbb7ff;
-}
-
 </style>
 </head>
 
@@ -136,13 +107,8 @@ section {
 <!-- FIRST -->
 <section>
 
-  <!-- ФОН -->
   <img class="model-top" src="start.jpg">
-  <div class="overlay"></div>
-
-  <div class="star">✧</div>
-  <div class="star">✦</div>
-  <div class="star">✧</div>
+  <div class="banner-fade"></div>
 
   <div class="card">
     <div class="title hidden from-left delay1">welcome</div>
@@ -153,29 +119,25 @@ section {
 
 <!-- SECOND -->
 <section>
+
   <div class="card">
     <div class="title hidden from-right delay1">about me</div>
-
-    <!-- GIF (будет норм на чёрном фоне) -->
-    <img class="image hidden from-left delay2" src="bigvox.gif">
-
-    <div class="subtitle hidden from-bottom delay3">your info here</div>
+    <div class="subtitle hidden from-bottom delay2">your info here</div>
   </div>
+
+  <!-- ГИФ ВНИЗУ -->
+  <img class="gif-bottom hidden from-bottom delay3" src="bigvox.gif">
+
 </section>
 
 <!-- THIRD -->
 <section>
+
   <div class="card">
     <div class="title hidden from-left delay1">links</div>
     <div class="subtitle hidden from-right delay2">inst / tg / etc</div>
   </div>
-</section>
 
-<!-- LAST -->
-<section>
-  <div class="big hidden from-bottom delay1">RENTRY</div>
-
-  <img class="model-bottom hidden from-bottom delay2" src="finish.jpg">
 </section>
 
 <script>
