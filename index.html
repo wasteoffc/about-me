@@ -14,7 +14,6 @@ body {
   overflow-x: hidden;
 }
 
-/* секции */
 section {
   min-height: 100vh;
   display: flex;
@@ -22,28 +21,44 @@ section {
   justify-content: center;
   flex-direction: column;
   position: relative;
-  padding: 220px 20px 60px; /* место под баннер */
+  padding: 220px 20px 120px;
 }
 
-/* БАННЕР */
-.model-top {
+/* БАННЕР (верх) */
+.banner {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 200px;
   object-fit: cover;
-  z-index: 1;
 }
 
-/* затемнение баннера */
-.banner-fade {
+/* ГИФ БАННЕР (низ) */
+.gif-banner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* затемнение */
+.fade-top {
   position: absolute;
   top: 0;
   width: 100%;
   height: 200px;
   background: linear-gradient(to bottom, transparent, black);
-  z-index: 2;
+}
+
+.fade-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(to top, black, transparent);
 }
 
 /* карточки */
@@ -54,30 +69,24 @@ section {
   padding: 25px;
   text-align: center;
   max-width: 350px;
-  z-index: 3;
+  z-index: 2;
 }
 
 .title {
-  font-size: 28px;
+  font-size: 30px;
   color: #cbb7ff;
 }
 
 .subtitle {
   font-size: 16px;
   color: #aaa;
+  margin-top: 10px;
 }
 
-.image {
-  width: 100%;
-  border-radius: 15px;
-  margin-top: 15px;
-}
-
-/* гиф снизу */
-.gif-bottom {
-  position: absolute;
-  bottom: 0;
-  width: 180px;
+.sub2 {
+  font-size: 14px;
+  color: #888;
+  margin-top: 5px;
 }
 
 /* анимации */
@@ -107,13 +116,13 @@ section {
 <!-- FIRST -->
 <section>
 
-  <img class="model-top" src="start.jpg">
-  <div class="banner-fade"></div>
+  <img class="banner" src="start.jpg">
+  <div class="fade-top"></div>
 
   <div class="card">
-    <div class="title hidden from-left delay1">Waste / Akuma
-    he/him</div>   
-    <div class="subtitle hidden from-right delay2">istp 6w5 sx6sp4sp9 flev</div>
+    <div class="title hidden from-left delay1">waste / akuma</div>
+    <div class="subtitle hidden from-right delay2">he / him</div>
+    <div class="sub2 hidden from-bottom delay3">istp 6w5 sx6sp4sp9 flev choleric</div>
   </div>
 
 </section>
@@ -122,14 +131,15 @@ section {
 <section>
 
   <div class="card">
-    <div class="title hidden from-right delay1">my kinn list</div>
-    <div class="subtitle hidden from-bottom delay2">Vox , Husk , Norman Jayden , Luka , Scaramouche , Skirk , Blade ,
-        Kyle Broflovski , Nero , Dirk Strider , Folly , Jimmy , Mae Borowski , Towa , Blitz , Yoshiki , Ayanami Rey , Song gi tae , Vicho ,
-    Chrollo , Killua , Jeong Sana , Tomoe , Narrator , Samuel , Антон Звездочкин</div>
+    <div class="title hidden from-right delay1">kinn list</div>
+    <div class="subtitle hidden from-bottom delay2">vox , husk , norman jayden , scaramouche , skirk , blade , 
+    mae borowski , chrollo lucifer , killua , kyle broflovski , song gi tae , jeong sana , vicho , samuel , jimmy ,
+    yoshiki , ayanami rey , luka , tomoe , nero , dirk strider , towa , narrator , folly , антон звездочкин , failure boy</div>
   </div>
 
-  <!-- ГИФ ВНИЗУ -->
-  <img class="gif-bottom hidden from-bottom delay3" src="bigvox.gif">
+  <!-- ГИФ БАННЕР -->
+  <img class="gif-banner hidden from-bottom delay3" src="bigvox.gif">
+  <div class="fade-bottom"></div>
 
 </section>
 
@@ -137,8 +147,29 @@ section {
 <section>
 
   <div class="card">
-    <div class="title hidden from-left delay1">links</div>
-    <div class="subtitle hidden from-right delay2">inst / tg / etc</div>
+    <div class="title hidden from-left delay1">fandoms & games & movies</div>
+    <div class="subtitle hidden from-right delay2">hazbin hotel , helluva boss , twitch , rurave , alien stage , mouthwashing ,
+    slow damage , fight club , american psycho , se trata de nada , watajel , chainsaw man , chiikawa , suicide boy , everything but your life ,
+    heavy rain , no im not a human , papers please , homestuck , south park , BASEketball , fnaf , jibaku shounen hanako-kun , jujitsu kaisen ,
+     beastars , countryhumans , hetalia , cookie run kingdom , cookie run with castle ,Milk inside a bag of milk inside a bag of milk , 
+    genshin impact , honkai star rail , wuwa , zenless zone zero , mlbb , ryan goslings movies , kamisama kiss , mob psycho 100 , devil may cry , 
+    regretevator , hunter x hunter , spooky month , night in the woods , mortal kombat , scott pilgrim , brawl stars , metal family , eurovision ,
+    evangelion , the promise of hope , a room without windows , the summer hikaru dead , one wheat mark , helltaker , дух моей общаги , 
+    n etc </div>
+  </div>
+
+</section>
+
+<!-- FOURTH -->
+<section>
+
+  <div class="card">
+    <div class="title hidden from-left delay1">fav music</div>
+    <div class="subtitle hidden from-right delay2">pyrokinesis , mzlff , booker , слава кпсс , cupsize , кишлак / апфс , msi , овсянкин , Kai angel , 9mice ,
+    dk , lida , ski aggu , joost klein , käärijä , tommy cash , gspd , dead blonde , lsp , щенки , стрыкало , электрофорез , 
+    and one , пошлая молли , cmh , нервы , madk1d , тринадцать карат , папин олимпос , дайте танк (!) , fortuna812 , три дня дождя ,
+    aikko , кожа , полматери , ssshhhiiittt! , ghost , gorillaz , rammstein , юг404 , noize mc , zemfira , лазарев , билан , птицу емъ , zxcursed , серега пират  , 
+    nyan.mp3 , сметана band n etc </div>
   </div>
 
 </section>
